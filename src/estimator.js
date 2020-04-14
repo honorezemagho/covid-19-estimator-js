@@ -29,20 +29,23 @@ function impactCases(data) {
     const periodTypedata = data.periodType;
     const timeToElapsedata = data.timeToElapse;
 
-    function convertToDays(periodTypedata, timeToElapsedata) {
-        if (periodTypedata === 'months') {
-            return timeToElapsedata * 30;
+    const periodInDays = (months) => months * 30;
+    const periodWeeks = (weeks) => weeks * 7;
+
+    const numberOfDays = (periodTypedata, timeToElapsedata) => {
+        switch (periodTypedata) {
+            case 'months':
+                return periodInDays(timeToElapsedata);
+            case 'weeks':
+                return periodWeeks(timeToElapsedata);
+            default:
+                return timeToElapse;
         }
-        if (periodTypedata === 'weeks') {
-            return timeToElapsedata * 7;
-        }
-        if (periodTypedata === 'days') {
-            return timeToElapsedata;
-        }
-    }
+    };
+
 
     const currentlyInfected = data.reportedCases * 10;
-    const timeInDays = convertToDays(periodTypedata, timeToElapsedata);
+    const timeInDays = numberOfDays(periodTypedata, timeToElapsedata);
 
     const infectionsByRequestedTime = currentlyInfected * (2 ** Math.floor(timeInDays / 3));
     const severeCasesByRequestedTime = Math.floor(infectionsByRequestedTime * 0.15);
