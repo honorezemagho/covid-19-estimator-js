@@ -70,7 +70,7 @@ function severeImpactCases(data) {
     const currentlyInfected = reportedCases * 50;
     const timeInDays = numberOfDays(periodType, timeToElapse);
 
-    const infectionsByRequestedTime = currentlyInfected * (2 ** Math.floor(timeInDays / 3));
+    const infectionsByRequestedTime = currentlyInfected * (2 ** Math.trunc(timeInDays / 3));
     const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
     const hospitalBedsAvailable = Math.trunc(totalHospitalBeds * 0.35);
     const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
