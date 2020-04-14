@@ -20,7 +20,6 @@ module.exports = {
         "comma-dangle": ["error", "never"],
         "no-param-reassign": ["error", { "props": false }],
         "indent": "off",
-        "linting.enabled": false,
         "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
     },
 };
