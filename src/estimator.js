@@ -40,9 +40,9 @@ function impactCases(data) {
     const severeCasesByRequestedTime = Math.floor(infectionsByRequestedTime * 0.15);
     const hospitalBedsAvailable = Math.floor(totalHospitalBeds * 0.35);
     const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
-    const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
-    const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
-    const dollarOut = Math.trunc(infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays);
+    const casesForICUByRequestedTime = Math.floor(infectionsByRequestedTime * 0.05);
+    const casesForVentilatorsByRequestedTime = Math.floor(infectionsByRequestedTime * 0.02);
+    const dollarOut = infectionsByRequestedTime * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays;
     const rounddollar = dollarOut.toFixed(1);
     const dollarsInFlight = Number(rounddollar);
     return {
@@ -74,9 +74,9 @@ function severeImpactCases(data) {
     const severeCasesByRequestedTime = Math.floor(infectionsByRequestedTime * 0.15);
     const hospitalBedsAvailable = Math.floor(totalHospitalBeds * 0.35);
     const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
-    const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
-    const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
-    const dollarOut = Math.trunc(infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays);
+    const casesForICUByRequestedTime = Math.floor(infectionsByRequestedTime * 0.05);
+    const casesForVentilatorsByRequestedTime = Math.floor(infectionsByRequestedTime * 0.02);
+    const dollarOut = infectionsByRequestedTime * region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays;
     const rounddollar = dollarOut.toFixed(1);
     const dollarsInFlight = Number(rounddollar);
 
