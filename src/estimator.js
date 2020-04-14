@@ -39,7 +39,7 @@ function impactCases(data) {
     const infectionsByRequestedTime = currentlyInfected * (2 ** Math.floor(timeInDays / 3));
     const severeCasesByRequestedTime = Math.floor(infectionsByRequestedTime * 0.15);
     const hospitalBedsAvailable = Math.floor(totalHospitalBeds * 0.35);
-    const hospitalBedsByRequestedTime = Math.floor(hospitalBedsAvailable - severeCasesByRequestedTime);
+    const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
     const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
     const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
     const dollarOut = Math.trunc(infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays);
