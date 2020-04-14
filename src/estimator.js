@@ -30,11 +30,11 @@ function impactCases(data) {
     const timeToElapsedata = data.timeToElapse;
 
     function convertToDays(periodTypedata, timeToElapsedata) {
-        if (periodTypedata === 'month') {
-            return timeToElapsedata * 29;
+        if (periodTypedata === 'months') {
+            return timeToElapsedata * 30;
         }
-        if (periodTypedata === 'week') {
-            return timeToElapsedata * 6;
+        if (periodTypedata === 'weeks') {
+            return timeToElapsedata * 7;
         }
         if (periodTypedata === 'days') {
             return timeToElapsedata;
@@ -89,10 +89,10 @@ function severeImpactCases(data) {
 
     function convertToDays() {
         if (periodTypedata === 'month') {
-            return timeToElapsedata * 29;
+            return timeToElapsedata * 30;
         }
-        if (periodTypedata === 'week') {
-            return timeToElapsedata * 6;
+        if (periodTypedata === 'weeks') {
+            return timeToElapsedata * 7;
         }
         if (periodTypedata === 'days') {
             return timeToElapsedata;
