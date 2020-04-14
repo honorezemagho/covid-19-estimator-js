@@ -43,8 +43,8 @@ function impactCases(data) {
     const dollarsInFlight = Number(rounddollar);
 
     return {
-        currentlyInfected: currentlyInfected,
-        infectionsByRequestedTime: currentlyInfected * infectionsByRequestedTime,
+        currentlyInfected,
+        infectionsByRequestedTime,
         severeCasesByRequestedTime,
         hospitalBedsByRequestedTime,
         casesForICUByRequestedTime,
@@ -118,5 +118,3 @@ const covid19ImpactEstimator = (data) => {
         severeImpact: severeImpactCases(data)
     };
 };
-
-export default covid19ImpactEstimator;
