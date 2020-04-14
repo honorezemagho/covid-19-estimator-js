@@ -29,13 +29,13 @@ function impactCases(data) {
     const periodTypedata = data.periodType;
     const timeToElapsedata = data.timeToElapse;
 
-    const periodInDays = (months) => months * 30;
+    const periodInMonth = (months) => months * 30;
     const periodWeeks = (weeks) => weeks * 7;
 
     const numberOfDays = (periodTypedata, timeToElapsedata) => {
         switch (periodTypedata) {
             case 'months':
-                return periodInDays(timeToElapsedata);
+                return periodInMonth(timeToElapsedata);
             case 'weeks':
                 return periodWeeks(timeToElapsedata);
             default:
