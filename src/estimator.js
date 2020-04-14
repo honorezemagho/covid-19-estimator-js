@@ -9,51 +9,40 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable consistent-return */
 
+const periodInDays = (months) => months * 30;
+const periodWeeks = (weeks) => weeks * 7;
+
+const numberOfDays = (periodType, timeToElapse) => {
+    switch (periodType) {
+        case 'months':
+            return periodInDays(timeToElapse);
+        case 'weeks':
+            return periodWeeks(timeToElapse);
+        default:
+            return timeToElapse;
+    }
+};
 
 function impactCases(data) {
     const {
-        region: {
-            name,
-            avgAge,
-            avgDailyIncomeInUSD,
-            avgDailyIncomePopulation
-        },
+        region,
         periodType,
         timeToElapse,
         reportedCases,
-        population,
         totalHospitalBeds
     } = data;
 
 
-    const periodTypedata = data.periodType;
-    const timeToElapsedata = data.timeToElapse;
-
-    const periodInMonth = (months) => months * 30;
-    const periodWeeks = (weeks) => weeks * 7;
-
-    const numberOfDays = (periodTypedata, timeToElapsedata) => {
-        switch (periodTypedata) {
-            case 'months':
-                return periodInMonth(timeToElapsedata);
-            case 'weeks':
-                return periodWeeks(timeToElapsedata);
-            default:
-                return timeToElapse;
-        }
-    };
-
-
-    const currentlyInfected = data.reportedCases * 10;
-    const timeInDays = numberOfDays(periodTypedata, timeToElapsedata);
+    const currentlyInfected = reportedCases * 10;
+    const timeInDays = numberOfDays(periodType, timeToElapse);
 
     const infectionsByRequestedTime = currentlyInfected * (2 ** Math.floor(timeInDays / 3));
     const severeCasesByRequestedTime = Math.floor(infectionsByRequestedTime * 0.15);
-    const hospitalBedsAvailable = Math.floor(data.totalHospitalBeds * 0.35);
+    const hospitalBedsAvailable = Math.floor(totalHospitalBeds * 0.35);
     const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
     const casesForICUByRequestedTime = Math.floor(infectionsByRequestedTime * 0.05);
     const casesForVentilatorsByRequestedTime = Math.floor(infectionsByRequestedTime * 0.02);
-    const dollarOut = infectionsByRequestedTime * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD * timeInDays;
+    const dollarOut = infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays;
     const rounddollar = dollarOut.toFixed(1);
     const dollarsInFlight = Number(rounddollar);
 
@@ -71,47 +60,23 @@ function impactCases(data) {
 function severeImpactCases(data) {
 
     const {
-        region: {
-            name,
-            avgAge,
-            avgDailyIncomeInUSD,
-            avgDailyIncomePopulation
-        },
+        region,
         periodType,
         timeToElapse,
         reportedCases,
-
-        population,
         totalHospitalBeds
     } = data;
 
-
-    const periodTypedata = data.periodType;
-    const timeToElapsedata = data.timeToElapse;
-
-
-    function convertToDays() {
-        if (periodTypedata === 'month') {
-            return timeToElapsedata * 30;
-        }
-        if (periodTypedata === 'weeks') {
-            return timeToElapsedata * 7;
-        }
-        if (periodTypedata === 'days') {
-            return timeToElapsedata;
-        }
-    }
-
-    const currentlyInfected = data.reportedCases * 50;
-    const timeInDays = convertToDays(periodType, timeToElapse);
+    const currentlyInfected = reportedCases * 50;
+    const timeInDays = numberOfDays(periodType, timeToElapse);
 
     const infectionsByRequestedTime = currentlyInfected * (2 ** Math.floor(timeInDays / 3));
     const severeCasesByRequestedTime = Math.floor(infectionsByRequestedTime * 0.15);
-    const hospitalBedsAvailable = Math.floor(data.totalHospitalBeds * 0.35);
+    const hospitalBedsAvailable = Math.floor(totalHospitalBeds * 0.35);
     const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
     const casesForICUByRequestedTime = Math.floor(infectionsByRequestedTime * 0.05);
     const casesForVentilatorsByRequestedTime = Math.floor(infectionsByRequestedTime * 0.02);
-    const dollarOut = infectionsByRequestedTime * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD * timeInDays;
+    const dollarOut = infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays;
     const rounddollar = dollarOut.toFixed(1);
     const dollarsInFlight = Number(rounddollar);
     return {
