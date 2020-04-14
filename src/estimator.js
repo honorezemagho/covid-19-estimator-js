@@ -1,3 +1,15 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable eol-last */
+/* eslint-disable linebreak-style */
+/* eslint-disable padded-blocks */
+/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
+/* eslint-disable no-shadow */
+/* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
+
+
 function impactCases(data) {
     const {
         region: {
@@ -65,6 +77,7 @@ function severeImpactCases(data) {
         periodType,
         timeToElapse,
         reportedCases,
+
         population,
         totalHospitalBeds
     } = data;
@@ -118,3 +131,5 @@ const covid19ImpactEstimator = (data) => {
         severeImpact: severeImpactCases(data)
     };
 };
+
+export default covid19ImpactEstimator;
