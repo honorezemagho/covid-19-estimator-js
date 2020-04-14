@@ -53,10 +53,8 @@ const covid19ImpactEstimator = (data) => {
 
     const availableBed = 0.35 * totalHospitalBed;
 
-    impact.hospitalBedsByRequestedTime = Math.trunc(availableBed -
-        impSevercaseBrqt);
-    severeImpact.hospitalBedsByRequestedTime = Math.trunc(availableBed -
-        sevImpSevercaseBrqt);
+    impact.hospitalBedsByRequestedTime = Math.trunc(availableBed - impSevercaseBrqt);
+    severeImpact.hospitalBedsByRequestedTime = Math.trunc(availableBed - sevImpSevercaseBrqt);
 
     impact.casesForICUByRequestedTime = Math.trunc(0.05 * impactInfBrqt);
     severeImpact.casesForICUByRequestedTime = Math.trunc(0.05 * sevImpactInfBrqt);
@@ -68,10 +66,8 @@ const covid19ImpactEstimator = (data) => {
     const avgIncome = Number(avgDailyIncome);
     const days = Number(DayNumber);
 
-    const impDollInFlight = (impactInfBrqt * avgDInPop *
-        avgIncome) / days;
-    const sevImpDollInFlight = (sevImpactInfBrqt * avgDInPop *
-        avgIncome) / days;
+    const impDollInFlight = (impactInfBrqt * avgDInPop * avgIncome) / days;
+    const sevImpDollInFlight = (sevImpactInfBrqt * avgDInPop * avgIncome) / days;
 
     impact.dollarsInFlight = Math.trunc(impDollInFlight);
     severeImpact.dollarsInFlight = Math.trunc(sevImpDollInFlight);
