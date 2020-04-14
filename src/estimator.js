@@ -39,10 +39,10 @@ function impactCases(data) {
     const infectionsByRequestedTime = currentlyInfected * (2 ** Math.trunc(timeInDays / 3));
     const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
     const hospitalBedsAvailable = Math.trunc(totalHospitalBeds * 0.35);
-    const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
+    const hospitalBedsByRequestedTime = Math.trunc(hospitalBedsAvailable - severeCasesByRequestedTime);
     const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
     const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
-    const dollarOut = infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays;
+    const dollarOut = Math.trunc(infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays);
     const rounddollar = dollarOut.toFixed(1);
     const dollarsInFlight = Number(rounddollar);
 
@@ -73,12 +73,13 @@ function severeImpactCases(data) {
     const infectionsByRequestedTime = currentlyInfected * (2 ** Math.trunc(timeInDays / 3));
     const severeCasesByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.15);
     const hospitalBedsAvailable = Math.trunc(totalHospitalBeds * 0.35);
-    const hospitalBedsByRequestedTime = hospitalBedsAvailable - severeCasesByRequestedTime;
+    const hospitalBedsByRequestedTime = Math.trunc(hospitalBedsAvailable - severeCasesByRequestedTime);
     const casesForICUByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.05);
     const casesForVentilatorsByRequestedTime = Math.trunc(infectionsByRequestedTime * 0.02);
-    const dollarOut = infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays;
+    const dollarOut = Math.trunc(infectionsByRequestedTime * data.region.avgDailyIncomePopulation * region.avgDailyIncomeInUSD * timeInDays);
     const rounddollar = dollarOut.toFixed(1);
     const dollarsInFlight = Number(rounddollar);
+
     return {
         currentlyInfected,
         infectionsByRequestedTime,
